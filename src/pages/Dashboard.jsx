@@ -41,7 +41,7 @@ export default function Dashboard() {
   const [student, setStudent] = useState([]); // to store student info to show it in the form when user try to edit it
   const [allUsers,setAllUsers] = useState([])
 
-  const [currentUser, setCurrentUser] = useState(null); // to show the user name in the dashboard
+  const [currentUser, setCurrentUser] = useState(""); // to show the user name in the dashboard
   const navigate = useNavigate();
 
   // if students change then fetch thier data to update the UI
@@ -177,6 +177,7 @@ export default function Dashboard() {
         ...doc.data(),
       }));
       setPenidngUsers(pUsers);
+      console.log(`the pending users are ${pendingUsers}`)
     } catch (error) {
       console.log(`pending users error : ${error}`);
     }

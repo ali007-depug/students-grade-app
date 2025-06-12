@@ -12,13 +12,12 @@ const PendingUsers = React.memo(function PendingUsers({
   closePendingUsers,
 }) {
   console.log("pending users rendering");
-  console.log(allUsers);
   return (
     <div className="absolute rounded  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-n2-color text-white font-semibold w-90 min-h-40 flex justify-center shadow-md shadow-black">
       {/* close icon */}
       <IoCloseCircleSharp
         size={50}
-        color="black"lassName="mt-5"
+        color="black"
         className="absolute top-0 right-0 cursor-pointer hover:bg-red-500 transition-all duration-300 ease-in-out p-2 rounded"
         onClick={closePendingUsers}
       />
@@ -43,7 +42,7 @@ const PendingUsers = React.memo(function PendingUsers({
         </div>
 
         {/* pending users */}
-        <div className="flex flex-col py-2 itmes-center bg-s-color">
+        <div className="flex flex-col py-2 items-center bg-s-color">
           <p className="mx-auto w-fit font-bold bg-p-color p-2 rounded">
             حسابات تنتظر التأكيد
           </p>
@@ -52,7 +51,7 @@ const PendingUsers = React.memo(function PendingUsers({
             pendingUsers.map((user, index) => (
               <div
                 key={index}
-                className="flex gap-2 mt-10 items-center w-fit h-fit"
+                className="flex gap-2 mt-3 items-center justify-between w-fit h-fit"
               >
                 <p className="font-semibold text-lg text-p-color">{user?.name}</p>
                 <p>
