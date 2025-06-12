@@ -14,7 +14,7 @@ function App() {
       <Routes>
         {/* students UI */}
         <Route
-          path="/students-grades"
+          path="/"
           element={
             <div className="[direction:rtl] px-2 grid place-items-center h-[100dvh] bg-bg-color">
               <StudentsGrade />
