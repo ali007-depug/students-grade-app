@@ -2,6 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
-  base: "",
+  base: "/students-grade-app/",
   plugins: [react(),tailwindcss()],
 })
