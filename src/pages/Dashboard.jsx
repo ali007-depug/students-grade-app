@@ -38,8 +38,8 @@ export default function Dashboard() {
   const [selectedId, setSelectedId] = useState(null); // store the selected id when user want remove any studtent
   const [editedSelectedId, setEditedSelectedId] = useState(null); // store the selected id when user want to edit any studtent
 
-  const [student, setStudent] = useState(null); // to store student info to show it in the form when user try to edit it
-  const [allUsers,setAllUsers] = useState(null)
+  const [student, setStudent] = useState([]); // to store student info to show it in the form when user try to edit it
+  const [allUsers,setAllUsers] = useState([])
 
   const [currentUser, setCurrentUser] = useState(null); // to show the user name in the dashboard
   const navigate = useNavigate();

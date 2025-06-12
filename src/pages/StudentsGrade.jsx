@@ -38,7 +38,6 @@ export default function StudentsGrade() {
       } else {
         // return the first match
         setResult(querySnapshot.docs[0].data());
-        console.log(querySnapshot.docs[0].data());
       }
     } catch (error) {
       console.log(error);

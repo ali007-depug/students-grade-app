@@ -38,7 +38,7 @@ const PendingUsers = React.memo(function PendingUsers({
               </div>
             ))
           ) : (
-            <p className=" relative top-10 mx-auto">لا يوجد حسابات </p>
+            <p className=" relative text-p-color mx-auto">لا يوجد حسابات </p>
           )}
         </div>
 
