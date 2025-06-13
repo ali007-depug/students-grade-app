@@ -27,7 +27,7 @@ export default function SidePanel({
         </div>
         {/*===== arrow wapper ==== */}
         <div
-          className={`bg-bg2-color shadow-md rounded-full md: absolute left-[-42px] top-[40px] w-[29px] h-[30px] p-5 cursor-pointer lg:hidden`}
+          className={`bg-white shadow-md rounded-full md: absolute left-[-42px] top-[40px] w-[29px] h-[30px] p-5 cursor-pointer lg:hidden`}
           onClick={handleSidePanelArrow}
         >
           {/* arrow it self */}

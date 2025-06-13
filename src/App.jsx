@@ -1,16 +1,20 @@
-// components
-import StudentsGrade from "./pages/StudentsGrade";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { lazy, Suspense } from "react";
 // React Router Dom
 import { Routes, Route } from "react-router-dom";
+// components
+const StudentsGrade = lazy(()=> import("./pages/StudentsGrade"));
+const Login = lazy(()=> import("./pages/Login"));
+const Signup = lazy(()=> import("./pages/Signup"));
+const Dashboard = lazy(()=>import("./pages/Dashboard"));
+// import Dashboard from "./pages/Dashboard"
+import ProtectedRoute from "./components/ProtectedRoute";
+import Loading from "./components/Loading";
 
 function App() {
   return (
     <>
       {/* Routes */}
+        <Suspense fallback={<Loading/>}>
       <Routes>
         {/* students UI */}
         <Route
@@ -53,6 +57,8 @@ function App() {
         />
         {/* ===== End Dashboard UI ==== */}
       </Routes>
+        </Suspense>
+
     </>
   );
 }

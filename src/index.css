@@ -1,7 +1,6 @@
 @import "tailwindcss";
-
 @theme {
-  --font-alex:'Alexandria'
+  --font-alex:'Alexandria',san-serif;
   --breakpoint-xs: 30rem;
   --color-p-color: #333446;
   --color-s-color: #7F8CAA;

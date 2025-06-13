@@ -37,7 +37,7 @@ export default function SearchForm({ onSearch }) {
       {/* get result button */}
       <button
         type="submit"
-        className="cursor-pointer rounded bg-p-color font-semibold text-white w-fit self-center px-5 py-3 my-4 hover:text-bg2-color-color hover:bg-s-color transition-all duration-300 ease-linear"
+        className="cursor-pointer rounded bg-p-color font-bold text-white w-fit self-center px-5 py-3 my-4 hover:text-bg2-color-color hover:bg-s-color transition-all duration-300 ease-linear"
       >
         إستعلام
       </button>
