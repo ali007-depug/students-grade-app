@@ -22,8 +22,6 @@ export default function SearchForm({ onSearch }) {
       // this comes from it's parent 
       onSearch(stdIdVal);
     }
-    
-
   };
 
   return (

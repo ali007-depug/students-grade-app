@@ -1,5 +1,5 @@
 // hooks
-import { useState } from "react";
+import { useCallback, useState } from "react";
 // components
 import SearchForm from "../components/SearchForm";
 import ResultCard from "../components/ResultCard";
@@ -12,10 +12,10 @@ export default function StudentsGrade() {
   const [result, setResult] = useState(null); // student grades
   const [loading, setloading] = useState(false); // loading
   const [errorMSg, setErrorMsg] = useState(""); // error state
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState(false); // student result
 
   //   func for searcing in Fire Store Database
-  const searchInFireStore = async (stdId) => {
+  const searchInFireStore = useCallback( async (stdId) => {
     // init state
     setloading(true);
     setErrorMsg("");
@@ -39,14 +39,14 @@ export default function StudentsGrade() {
         // return the first match
         setResult(querySnapshot.docs[0].data());
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       setErrorMsg("حدث خطأ أثناء البحث");
     } finally {
       setloading(false);
     }
     // ==== End try catch block ===
-  };
+  },[])
+
   return (
     <div className="bg-bg2-color shadow-2xl p-5 rounded w-[min(95%,550px)]">
       {/* title */}
@@ -59,7 +59,6 @@ export default function StudentsGrade() {
       {showResult && (
         <ResultCard result={result} error={errorMSg} loading={loading} />
       )}
-      {/* {showResult && <ResultCard result={result} error={errorMSg} /> } */}
     </div>
   );
 }
