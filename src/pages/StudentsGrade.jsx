@@ -1,5 +1,5 @@
 // hooks
-import { useCallback, useState } from "react";
+import { useCallback, useState, useTransition } from "react";
 // components
 import SearchForm from "../components/SearchForm";
 import ResultCard from "../components/ResultCard";
@@ -13,39 +13,41 @@ export default function StudentsGrade() {
   const [loading, setloading] = useState(false); // loading
   const [errorMSg, setErrorMsg] = useState(""); // error state
   const [showResult, setShowResult] = useState(false); // student result
-
+  const [isPending, startTranstion] = useTransition(); // transition
   //   func for searcing in Fire Store Database
-  const searchInFireStore = useCallback( async (stdId) => {
-    // init state
-    setloading(true);
-    setErrorMsg("");
-    setResult(null);
-    setShowResult(true);
+  const searchInFireStore = useCallback((stdId) => {
+    startTranstion(async () => {
+      // init state
+      setloading(true);
+      setErrorMsg("");
+      setResult(null);
+      setShowResult(true);
 
-    // try catch block
-    try {
-      // search in the firestore (grades) if it's exist get the stdGrade value
-      const searchQuery = query(
-        collection(db, "grades"),
-        where("std_id", "==", stdId.trim())
-      );
-      // store the result of search
-      const querySnapshot = await getDocs(searchQuery);
+      // try catch block
+      try {
+        // search in the firestore (grades) if it's exist get the stdGrade value
+        const searchQuery = query(
+          collection(db, "grades"),
+          where("std_id", "==", stdId.trim())
+        );
+        // store the result of search
+        const querySnapshot = await getDocs(searchQuery);
 
-      // if there is no match
-      if (querySnapshot.empty) {
-        setErrorMsg("لم يتم العثور على الطالب");
-      } else {
-        // return the first match
-        setResult(querySnapshot.docs[0].data());
+        // if there is no match
+        if (querySnapshot.empty) {
+          setErrorMsg("لم يتم العثور على الطالب");
+        } else {
+          // return the first match
+          setResult(querySnapshot.docs[0].data());
+        }
+      } catch {
+        setErrorMsg("حدث خطأ أثناء البحث");
+      } finally {
+        setloading(false);
       }
-    } catch {
-      setErrorMsg("حدث خطأ أثناء البحث");
-    } finally {
-      setloading(false);
-    }
-    // ==== End try catch block ===
-  },[])
+      // ==== End try catch block ===
+    });
+  }, []);
 
   return (
     <div className="bg-bg2-color shadow-2xl p-5 rounded w-[min(95%,550px)]">

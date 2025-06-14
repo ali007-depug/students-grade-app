@@ -1,5 +1,5 @@
 // hooks
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 // components
 import SidePanel from "../components/SidePanel";
 import DashboardData from "../components/DashboardData";
@@ -27,13 +27,15 @@ import { useCallback } from "react";
 import { BiLogOut } from "react-icons/bi";
 
 export default function Dashboard() {
-  const [showSidePanel, setShowSidePanel] = useState(false); // for side panel component
+  const [showUI, setShowUI] = useState({
+    SidePanel: false,
+    NewStdFrom: false,
+    ConfirmPopup: false,
+    pendignUsers: false,
+    toast: false,
+  });
   const [students, setStudents] = useState([]); // store the data from fire store
-  const [showNewStdForm, setShowNewStdForm] = useState(false); // show Form to add new student
-  const [showConfirmPopup, setShowConfirmPopup] = useState(false); // show confirm popup
   const [pendingUsers, setPenidngUsers] = useState([]); // peding users
-  const [showPendindUsersUI, setShowPendingUsersUI] = useState(false); // pending users UI
-  const [showToast, setShowToast] = useState(false); // show toaste
   const [toastMsg, setToastMsg] = useState("");
   const [selectedId, setSelectedId] = useState(null); // store the selected id when user want remove any studtent
   const [editedSelectedId, setEditedSelectedId] = useState(null); // store the selected id when user want to edit any studtent
@@ -51,8 +53,6 @@ export default function Dashboard() {
     // if pending users change then reflect in the UI
     getPendingUsers();
   }, []);
-
-    
 
   // ============================= Functions ========================================
   // function to fetch data from firebase & to update the UI
@@ -118,24 +118,28 @@ export default function Dashboard() {
 
   // side panel arrow
   function handleSidePanelArrow() {
-    setShowSidePanel(!showSidePanel);
+    setShowUI({...showUI,SidePanel:!showUI.SidePanel})
+
   }
   // add new student to firestore
   const addNewStudent = () => {
     // show the form
-    setShowNewStdForm(true);
+    setShowUI({...showUI,NewStdFrom:true});
+    // setShowNewStdForm(true);
     setStudent(null);
     setEditedSelectedId(null);
   };
   // close newStdForm component
   const closeNewStdForm = () => {
-    setShowNewStdForm(false);
+    setShowUI({...showUI,NewStdFrom:false});
+    // setShowNewStdForm(false);
     setStudent(null);
     setEditedSelectedId(null);
   };
 
   const handelDelete = (id) => {
-    setShowConfirmPopup(true);
+    setShowUI({...showUI,ConfirmPopup:true});
+    // setShowConfirmPopup(true);
     setSelectedId(id);
   };
   // remove student from firestore & UI
@@ -145,14 +149,14 @@ export default function Dashboard() {
       await deleteDoc(doc(db, "grades", id)); // filters the data
 
       setStudents((prev) => prev.filter((student) => student.id !== id));
-      setShowConfirmPopup(false);
+      setShowUI({...showUI,ConfirmPopup:false});
     } catch (error) {
       console.log(`the Error while deleting is : ${error}`);
     } finally {
-      setShowToast(true);
+      setShowUI({...showUI,toast:true});
       setToastMsg("تم الحذف بنجاح");
       setTimeout(() => {
-        setShowToast(false);
+        setShowUI({...showUI,toast:false});
         setToastMsg("");
       }, 1500);
     }
@@ -162,7 +166,8 @@ export default function Dashboard() {
     const foundStudent = students.find((std) => std.id == id);
     if (foundStudent) {
       setEditedSelectedId(id);
-      setShowNewStdForm(true);
+      setShowUI({...showUI,NewStdFrom:true});
+      // setShowNewStdForm(true);
       setStudent(foundStudent);
     }
   };
@@ -186,7 +191,7 @@ export default function Dashboard() {
   // show pending users & cotrol them
   const handelPendingUsers = () => {
     // show users UI
-    setShowPendingUsersUI(!showPendindUsersUI);
+    setShowUI({...showUI,pendignUsers:!showUI.pendignUsers});
   };
 
   // when user click on ✅
@@ -202,10 +207,10 @@ export default function Dashboard() {
 
       // update Pending users
       setPenidngUsers((prev) => prev.filter((u) => u.id !== user.id));
-      setShowToast(true);
+      setShowUI({...showUI,toast:true});
       setToastMsg("تم القبول بنجاح");
       setTimeout(() => {
-        setShowToast(false);
+        setShowUI({...showUI,toast:false});
         setToastMsg("");
       }, 1500);
     } catch (error) {
@@ -217,10 +222,10 @@ export default function Dashboard() {
     try {
       await deleteDoc(doc(db, "pending-users", id));
 
-      setShowToast(true);
+      setShowUI({...showUI,toast:true});
       setToastMsg("تم الرفض بنجاح");
       setTimeout(() => {
-        setShowToast(false);
+        setShowUI({...showUI,toast:false});
         setToastMsg("");
       }, 1500);
       setPenidngUsers((prev) => prev.filter((u) => u.id !== id));
@@ -230,7 +235,8 @@ export default function Dashboard() {
   }, []);
 
   const handleCloseConfirmPopup = () => {
-    setShowConfirmPopup(false);
+    setShowUI({...showUI,NewStdFrom:false});
+
   };
 
   return (
@@ -279,7 +285,7 @@ export default function Dashboard() {
         {/* ========= End dashobard data ========== */}
 
         {/* Form to add or edit student */}
-        {showNewStdForm && (
+        {showUI.NewStdFrom && (
           <NewStdFrom
             oldStudent={student}
             closeNewStdForm={closeNewStdForm}
@@ -290,7 +296,7 @@ export default function Dashboard() {
         {/* ========= End Form to add or edit student ===========*/}
 
         {/* Confirm popup */}
-        {showConfirmPopup && (
+        {showUI.ConfirmPopup && (
           <ConfirmPopup
             removeStd={() => handelRemove(selectedId)}
             closeConfirm={handleCloseConfirmPopup}
@@ -299,7 +305,7 @@ export default function Dashboard() {
         {/* ====== End confirm popup ======= */}
 
         {/* ====== Toast componet ====== */}
-        {showToast && (
+        {showUI.toast && (
           <div className="fixed bottom-[100px] left-[50px] w-[200px]">
             <Toast msg={toastMsg} />
           </div>
@@ -307,10 +313,10 @@ export default function Dashboard() {
         {/* ======== End Toast component ======== */}
 
         {/* ========== side panel component ======== */}
-        {!showNewStdForm && (
+        {!showUI.NewStdFrom && (
           <SidePanel
             handleSidePanelArrow={handleSidePanelArrow}
-            showSidePanel={showSidePanel}
+            showSidePanel={showUI.SidePanel}
             showAllStudentsData={fetchStudents}
             addNewStudent={addNewStudent}
             showPendingUsers={handelPendingUsers}
@@ -319,7 +325,7 @@ export default function Dashboard() {
         {/* ========= side panel component  ============ */}
 
         {/* ============= pending user UI ============== */}
-        {showPendindUsersUI && (
+        {showUI.pendignUsers && (
           <>
             <PendingUsers
               pendingUsers={pendingUsers}

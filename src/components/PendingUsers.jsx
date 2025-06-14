@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // react icon
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { MdDone } from "react-icons/md";
@@ -11,8 +11,8 @@ const PendingUsers = React.memo(function PendingUsers({
   handelRejectUser,
   closePendingUsers,
 }) {
-  console.log("pending users rendering");
   return (
+    // wrppaer
     <div className="absolute rounded  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-n2-color text-white font-semibold w-90 min-h-40 flex justify-center shadow-md shadow-black">
       {/* close icon */}
       <IoCloseCircleSharp
@@ -21,13 +21,14 @@ const PendingUsers = React.memo(function PendingUsers({
         className="absolute top-0 right-0 cursor-pointer hover:bg-red-500 transition-all duration-300 ease-in-out p-2 rounded"
         onClick={closePendingUsers}
       />
-      {/* users + pending users Wrapper */}
+      {/* users + pending users ==== Wrapper */}
       <div className="flex flex-col w-full">
         {/* all users */}
         <div className="flex flex-col py-2 items-center w-full bg-n-color">
           <p className="mx-auto w-fit font-bold bg-p-color p-2 rounded">
             الأدمن
           </p>
+          {/* rendering all users */}
           {allUsers.length > 0 ? (
             allUsers.map((user, index) => (
               <div key={index} className="flex items-center w-fit h-fit">
@@ -41,12 +42,12 @@ const PendingUsers = React.memo(function PendingUsers({
           )}
         </div>
 
-        {/* pending users */}
+        {/* pending users wrapper*/}
         <div className="flex flex-col py-2 items-center bg-s-color">
           <p className="mx-auto w-fit font-bold bg-p-color p-2 rounded">
             حسابات تنتظر التأكيد
           </p>
-
+          {/* rendering pending users */}
           {pendingUsers.length > 0 ? (
             pendingUsers.map((user, index) => (
               <div
@@ -54,6 +55,7 @@ const PendingUsers = React.memo(function PendingUsers({
                 className="flex gap-2 mt-3 items-center justify-between w-fit h-fit"
               >
                 <p className="font-semibold text-lg text-p-color">{user?.name}</p>
+                {/* ✅ button */}
                 <p>
                   <MdDone
                     size={35}
@@ -62,6 +64,7 @@ const PendingUsers = React.memo(function PendingUsers({
                     onClick={() => handelApproveUser(user)}
                   />
                 </p>
+                {/* ✖️ button*/}
                 <p>
                   <CgClose
                     size={35}
