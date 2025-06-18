@@ -1,8 +1,8 @@
 // hooks
 import { useState } from "react";
 // components
-import Input from "../components/Input";
-import PopupError from "../components/PoupError";
+const Input = () => import("../components/Input");
+const PopupError = () => import("../components/PoupError");
 // react router
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

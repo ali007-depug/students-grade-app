@@ -1,8 +1,8 @@
 // hooks
 import { useReducer, useState } from "react";
 // components
-import Input from "./Input";
-import Toast from "./Toast";
+const Input = () => import("./Input");
+const Toast = ()=> import("./Toast")
 // react icons
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { BiEdit } from "react-icons/bi";

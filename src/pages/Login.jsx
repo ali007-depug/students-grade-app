@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // componetns
-import Input from "../components/Input";
-import PopupError from "../components/PoupError";
+const Input = () => import("../components/Input");
+// import PopupError from "../components/PoupError";
+const PopupError = () => import("../components/PoupError");
 // react icons
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // fire base
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc,getDoc } from "@firebase/firestore";
+import { doc, getDoc } from "@firebase/firestore";
 import { app, db } from "../firebase";
 
 export default function Login() {
@@ -75,12 +76,11 @@ export default function Login() {
             // if it succeful redirect to the dashboard
             console.log("login succefully" + "" + userCredential.user);
             navigate("/dashboard");
-          }else{
-            await signOut(auth)
+          } else {
+            await signOut(auth);
             setShowPopup(true);
-            setErrorMsg("هذا البريد قيد التأكيد")
+            setErrorMsg("هذا البريد قيد التأكيد");
           }
-
         } catch (error) {
           // handel Login error
           console.log(error.code);

@@ -1,12 +1,18 @@
 // hooks
 import { useEffect, useState } from "react";
 // components
-import SidePanel from "../components/SidePanel";
-import DashboardData from "../components/DashboardData";
-import NewStdFrom from "../components/ِNewStdForm";
-import ConfirmPopup from "../components/ConfirmPopup";
-import PendingUsers from "../components/PendingUsers";
-import Toast from "../components/Toast";
+// import SidePanel from "../components/SidePanel";
+const SidePanel =()=> import('../components/SidePanel');
+const DashboardData = ()=> import('../components/DashboardData');
+// import DashboardData from "../components/DashboardData";
+// import NewStdFrom from "../components/ِNewStdForm";
+const NewStdFrom = ()=> import('../components/ِNewStdForm');
+// import ConfirmPopup from "../components/ConfirmPopup";
+const ConfirmPopup = ()=> import("../components/ConfirmPopup");
+// import PendingUsers from "../components/PendingUsers";
+const PendingUsers = ()=> import("../components/PendingUsers");
+// import Toast from "../components/Toast";
+const Toast = ()=> import("../components/Toast");
 // react icons
 import { RxAvatar } from "react-icons/rx";
 import { FiFile } from "react-icons/fi";

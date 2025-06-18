@@ -1,8 +1,8 @@
 // hooks
 import { useCallback, useState, useTransition } from "react";
 // components
-import SearchForm from "../components/SearchForm";
-import ResultCard from "../components/ResultCard";
+const SearchForm = ()=> import( "../components/SearchForm");
+const ResultCard = ()=> import("../components/ResultCard")
 
 // firebase
 import { collection, query, where, getDocs } from "firebase/firestore";

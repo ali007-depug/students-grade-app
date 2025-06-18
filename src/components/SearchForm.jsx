@@ -1,6 +1,6 @@
 // hooks
 import { useState } from "react";
-import Input from "./Input";
+const Input = () => import("./Input");
 export default function SearchForm({ onSearch }) {
   const [stdIdVal, setStdIdVal] = useState(""); // store Students input
   const [validateInput,setValidateInput] = useState(null)
