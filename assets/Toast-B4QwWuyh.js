@@ -1,0 +1,1 @@
+import{j as e}from"./index-CPk2onLi.js";import{a as o}from"./index-CiYT6WSc.js";import"./iconBase-eJkGVxrj.js";function i({msg:t}){return e.jsxs("div",{className:"flex items-center gap-2 bg-green-500  w-fit  rounded px-3 py-2 absolute bottom-[-50px] left-0 ",children:[e.jsx(o,{size:25,color:"black"}),t]})}export{i as default};
