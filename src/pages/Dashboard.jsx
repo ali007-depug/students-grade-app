@@ -68,7 +68,7 @@ export default function Dashboard() {
       }));
       // updata state
       const sortedData = stdData.sort((a, b) => {
-        return parseInt(a.std_id) - parseInt(b.std_id);
+        return a.std_id.substring(6) - b.std_id.substring(6);
       });
       setStudents(sortedData);
     } catch (error) {
@@ -137,9 +137,9 @@ export default function Dashboard() {
     setEditedSelectedId(null);
   };
 
+  // when user click on trash icon ==> show confirm popup and store the id of selected one
   const handelDelete = (id) => {
     setShowUI({...showUI,ConfirmPopup:true});
-    // setShowConfirmPopup(true);
     setSelectedId(id);
   };
   // remove student from firestore & UI
@@ -149,14 +149,15 @@ export default function Dashboard() {
       await deleteDoc(doc(db, "grades", id)); // filters the data
 
       setStudents((prev) => prev.filter((student) => student.id !== id));
-      setShowUI({...showUI,ConfirmPopup:false});
     } catch (error) {
       console.log(`the Error while deleting is : ${error}`);
     } finally {
+      // show toast
       setShowUI({...showUI,toast:true});
       setToastMsg("تم الحذف بنجاح");
+      // close the confirm popup
       setTimeout(() => {
-        setShowUI({...showUI,toast:false});
+        setShowUI({...showUI,ConfirmPopup:false,toast:false});
         setToastMsg("");
       }, 1500);
     }
@@ -297,8 +298,8 @@ export default function Dashboard() {
         {/* Confirm popup */}
         {showUI.ConfirmPopup && (
           <ConfirmPopup
-            removeStd={() => handelRemove(selectedId)}
-            closeConfirm={handleCloseConfirmPopup}
+            removeStd={() => handelRemove(selectedId)} // when user click on نعم
+            closeConfirm={handleCloseConfirmPopup} // when user click on لا
           />
         )}
         {/* ====== End confirm popup ======= */}

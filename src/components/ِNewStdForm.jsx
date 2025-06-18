@@ -93,7 +93,6 @@ export default function NewStdFrom({
     });
 
     // if the all field is valid then add this data to firesotre
-    if (isValidId && isValidGrade) {
       // update exist data
       if (editedId) {
         setLoading(true);
@@ -141,7 +140,6 @@ export default function NewStdFrom({
       if (typeof fetchStudents == "function") {
         fetchStudents();
       }
-    }
   };
   // =============================== End functions ===================================
   return (
@@ -173,7 +171,7 @@ export default function NewStdFrom({
         label={"رقم التسجيل"}
         value={formData.std_id}
         onChange={handelStdId}
-        customStyle={"text-center"}
+        customStyle={"text-center [direction:ltr]"}
       />
       {/* End student id */}
       {/* student grade */}
