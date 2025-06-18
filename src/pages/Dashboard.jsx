@@ -68,7 +68,7 @@ export default function Dashboard() {
       }));
       // updata state
       const sortedData = stdData.sort((a, b) => {
-        return a.std_id.substring(6) - b.std_id.substring(6);
+        return parseInt(a.std_id.substring(6)) - parseInt(b.std_id.substring(6));
       });
       setStudents(sortedData);
     } catch (error) {
@@ -275,6 +275,15 @@ export default function Dashboard() {
         <p className="flex gap-3 items-center text-xl md:text-2xl lg:text-4xl mb-5 font-extrabold justify-center px-3 py-2 text-white">
           <FiFile size={40} color="white"></FiFile> بيانات الطلاب
         </p>
+        {/* Number of Students */}
+        <div className="flex flex-col items-center rounded">
+          {/* imgs */}
+        <div className=" overflow-hidden w-fit flex flex-col items-center">
+          <img src="std.webp" alt="" className="size-20 bg-white rounded-full" />
+          <p className="text-black bg-white font-extrabold my-2 rounded w-fit ">{students.length}</p>
+        </div>
+        </div>
+        {/* End Number of Students */}
 
         {/* Dashboard Data */}
         <DashboardData
@@ -337,6 +346,7 @@ export default function Dashboard() {
           </>
         )}
         {/* ============= End pending user UI ============== */}
+
       </main>
       {/* ===== End content  ===== */}
     </div>

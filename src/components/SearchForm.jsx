@@ -17,12 +17,11 @@ export default function SearchForm({ onSearch }) {
   const handelFromSubmission = (e) => {
     e.preventDefault();
     // check the input if it's valid or not
-    const isInputValid = /^\d+$/.test(stdIdVal);
-    setValidateInput(isInputValid);
-    if (stdIdVal.trim() && isInputValid) {
+    // const isInputValid = /^\d+$/.test(stdIdVal);
+    // setValidateInput(isInputValid);
+    setValidateInput(true);
       // this comes from it's parent 
       onSearch(stdIdVal);
-    }
   };
 
   return (

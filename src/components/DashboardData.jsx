@@ -10,7 +10,7 @@ import { TbTrash } from "react-icons/tb";
 export default function DashboardData({ students =[],handelDelete,handelEdit }) {
   return (
     // data wrapper
-    <div className=" relative w-[100%] sm:w-[90%] lg:w-3/4 bg-bg2-color rounded overflow-scroll h-[100dvh]">
+    <div className=" relative w-[100%] sm:w-[90%] lg:w-3/4 bg-bg2-color rounded overflow-scroll scroll-smooth h-[100dvh]">
       {/* main content */}
       <div className="grid grid-cols-5 gap-1 sm:gap-4 text-center font-bold py-2 [&_div]:p-2 bg-n3-color sticky top-0 ">
         <div className="bg--color">No</div>
