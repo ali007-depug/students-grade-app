@@ -13,7 +13,7 @@ const PendingUsers = React.memo(function PendingUsers({
 }) {
   return (
     // wrppaer
-    <div className="absolute rounded  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-n2-color text-white font-semibold w-90 min-h-40 flex justify-center shadow-md shadow-black">
+    <div className="fixed rounded  top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-n2-color text-white font-semibold w-90 min-h-40 flex justify-center shadow-md shadow-black">
       {/* close icon */}
       <IoCloseCircleSharp
         size={50}

@@ -235,8 +235,7 @@ export default function Dashboard() {
   }, []);
 
   const handleCloseConfirmPopup = () => {
-    setShowUI({...showUI,NewStdFrom:false});
-
+    setShowUI({...showUI,ConfirmPopup:false});
   };
 
   return (
