@@ -22,7 +22,7 @@ export default function SearchForm({ onSearch }) {
     // setValidateInput(isInputValid);
     setValidateInput(true);
       // this comes from it's parent 
-      onSearch(stdIdVal);
+      onSearch(stdIdVal.trim());
   };
 
   return (
@@ -32,7 +32,9 @@ export default function SearchForm({ onSearch }) {
       onSubmit={(e) => handelFromSubmission(e)}
     >
       {/* input for search */}
-      <Input type={"text"} value={stdIdVal} label={"رقم التسجيل - student ID"} onChange={handelStdInputVal} error={validateInput} errorMsg={"الرجاء كتابة رقم تسجيل صالح"} customStyle={"![direction:ltr] text-center self-center"}/>
+      <input type="text" value={stdIdVal} onChange={(e)=>handelStdInputVal(e.target.value)} placeholder="EX: 018/M/40XX" required className="h-10 bg-white text-title-color font-bold w-full rounded px-2  placeholder-semibold outline-2 outline-gray-600 user-invalid:outline-red-600 user-valid:outline-green-400 text-center [direction:ltr]"/>
+
+      {/* <Input type={"text"} value={stdIdVal} label={"رقم التسجيل - student ID"} onChange={handelStdInputVal} error={validateInput} errorMsg={"الرجاء كتابة رقم تسجيل صالح"} customStyle={"![direction:ltr] text-center self-center"}/> */}
       {/* get result button */}
       <button
         type="submit"

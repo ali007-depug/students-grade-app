@@ -16,10 +16,9 @@ export default function StudentsGrade() {
   const [loading, setloading] = useState(false); // loading
   const [errorMSg, setErrorMsg] = useState(""); // error state
   const [showResult, setShowResult] = useState(false); // student result
-  const [isPending, startTranstion] = useTransition(); // transition
+  
   //   func for searcing in Fire Store Database
-  const searchInFireStore = useCallback((stdId) => {
-    startTranstion(async () => {
+  const searchInFireStore = useCallback(async (stdId) => {
       // init state
       setloading(true);
       setErrorMsg("");
@@ -49,11 +48,10 @@ export default function StudentsGrade() {
         setloading(false);
       }
       // ==== End try catch block ===
-    });
   }, []);
 
   return (
-    <div className="bg-bg2-color shadow-2xl p-5 rounded w-[min(95%,550px)]">
+    <div className="bg-bg2-color shadow-md shadow-white p-5 rounded w-[min(95%,550px)]">
       {/* title */}
       <h1 className="text-center font-extrabold text-3xl mt-3 mb-10 text-title-color">
         نتائج الطلاب
