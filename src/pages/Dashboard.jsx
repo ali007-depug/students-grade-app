@@ -15,7 +15,7 @@ import Toast from "../components/Toast";
 // const Toast = () => import("../components/Toast");
 // react icons
 import { RxAvatar } from "react-icons/rx";
-import { FiFile } from "react-icons/fi";
+import { PiStudent } from "react-icons/pi";
 // firebase
 import {
   collection,
@@ -282,7 +282,7 @@ export default function Dashboard() {
       {/* Content */}
       <main className="px-dyp py-10" role="main">
         <p className="flex gap-3 items-center text-xl md:text-2xl lg:text-4xl mb-5 font-extrabold justify-center px-3 py-2 text-white">
-          <FiFile size={40} color="white"></FiFile> بيانات الطلاب
+          <PiStudent size={60} color="white"></PiStudent> بيانات الطلاب
         </p>
         {/* Number of Students */}
         <div className="flex flex-col items-center rounded">
@@ -293,7 +293,7 @@ export default function Dashboard() {
               alt=""
               className="size-20 bg-white rounded-full"
             />
-            <p className="text-black bg-white font-extrabold my-2 rounded w-fit ">
+            <p className="text-black bg-white px-3 py-2 font-extrabold my-2 rounded w-fit ">
               {students.length}
             </p>
           </div>

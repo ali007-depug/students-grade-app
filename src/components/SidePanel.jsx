@@ -11,7 +11,7 @@ export default function SidePanel({
     <>
       {/* fixed side panel */}
       <div
-        className={` [direction:rtl] flex flex-col items-center fixed lg:right-0 top-30 rounded px-10 py-5 bg-n2-color sm:w-[40%] md:w-[32%] lg:w-[25%] transition-all duration-300 ease-in-out ${
+        className={` [direction:rtl] flex flex-col items-center fixed lg:right-0 top-30 rounded px-10 py-5 bg-n2-color sm:w-[40%] md:w-[32%] lg:w-[25%] transition-all duration-500 ease-in-out ${
           showSidePanel ? "right-0 sm:right-0" : "right-[-238px]"
         }`}
       >
