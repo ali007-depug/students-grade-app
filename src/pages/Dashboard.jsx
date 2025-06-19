@@ -1,18 +1,18 @@
 // hooks
 import { useEffect, useState } from "react";
 // components
-// import SidePanel from "../components/SidePanel";
-const SidePanel =()=> import('../components/SidePanel');
-const DashboardData = ()=> import('../components/DashboardData');
-// import DashboardData from "../components/DashboardData";
-// import NewStdFrom from "../components/ِNewStdForm";
-const NewStdFrom = ()=> import('../components/ِNewStdForm');
-// import ConfirmPopup from "../components/ConfirmPopup";
-const ConfirmPopup = ()=> import("../components/ConfirmPopup");
-// import PendingUsers from "../components/PendingUsers";
-const PendingUsers = ()=> import("../components/PendingUsers");
-// import Toast from "../components/Toast";
-const Toast = ()=> import("../components/Toast");
+import SidePanel from "../components/SidePanel";
+// const SidePanel = () => import("../components/SidePanel");
+// const DashboardData = () => import("../components/DashboardData");
+import DashboardData from "../components/DashboardData";
+import NewStdFrom from "../components/ِNewStdForm";
+// const NewStdFrom = () => import("../components/ِNewStdForm");
+import ConfirmPopup from "../components/ConfirmPopup";
+// const ConfirmPopup = () => import("../components/ConfirmPopup");
+import PendingUsers from "../components/PendingUsers";
+// const PendingUsers = () => import("../components/PendingUsers");
+import Toast from "../components/Toast";
+// const Toast = () => import("../components/Toast");
 // react icons
 import { RxAvatar } from "react-icons/rx";
 import { FiFile } from "react-icons/fi";
@@ -74,7 +74,11 @@ export default function Dashboard() {
       }));
       // updata state
       const sortedData = stdData.sort((a, b) => {
-        return parseInt(a.std_id.substring(6)) - parseInt(b.std_id.substring(6));
+        const [aYear, , aId] = a.std_id.split("/");
+        const [bYear, , bId] = b.std_id.split("/");
+        return (
+          parseInt(bYear) - parseInt(aYear) || parseInt(aId) - parseInt(bId)
+        );
       });
       setStudents(sortedData);
     } catch (error) {
@@ -124,20 +128,19 @@ export default function Dashboard() {
 
   // side panel arrow
   function handleSidePanelArrow() {
-    setShowUI({...showUI,SidePanel:!showUI.SidePanel})
-
+    setShowUI({ ...showUI, SidePanel: !showUI.SidePanel });
   }
   // add new student to firestore
   const addNewStudent = () => {
     // show the form
-    setShowUI({...showUI,NewStdFrom:true});
+    setShowUI({ ...showUI, NewStdFrom: true });
     // setShowNewStdForm(true);
     setStudent(null);
     setEditedSelectedId(null);
   };
   // close newStdForm component
   const closeNewStdForm = () => {
-    setShowUI({...showUI,NewStdFrom:false});
+    setShowUI({ ...showUI, NewStdFrom: false });
     // setShowNewStdForm(false);
     setStudent(null);
     setEditedSelectedId(null);
@@ -145,7 +148,7 @@ export default function Dashboard() {
 
   // when user click on trash icon ==> show confirm popup and store the id of selected one
   const handelDelete = (id) => {
-    setShowUI({...showUI,ConfirmPopup:true});
+    setShowUI({ ...showUI, ConfirmPopup: true });
     setSelectedId(id);
   };
   // remove student from firestore & UI
@@ -159,11 +162,11 @@ export default function Dashboard() {
       console.log(`the Error while deleting is : ${error}`);
     } finally {
       // show toast
-      setShowUI({...showUI,toast:true});
+      setShowUI({ ...showUI, toast: true });
       setToastMsg("تم الحذف بنجاح");
       // close the confirm popup
       setTimeout(() => {
-        setShowUI({...showUI,ConfirmPopup:false,toast:false});
+        setShowUI({ ...showUI, ConfirmPopup: false, toast: false });
         setToastMsg("");
       }, 1500);
     }
@@ -173,7 +176,7 @@ export default function Dashboard() {
     const foundStudent = students.find((std) => std.id == id);
     if (foundStudent) {
       setEditedSelectedId(id);
-      setShowUI({...showUI,NewStdFrom:true});
+      setShowUI({ ...showUI, NewStdFrom: true });
       // setShowNewStdForm(true);
       setStudent(foundStudent);
     }
@@ -198,7 +201,7 @@ export default function Dashboard() {
   // show pending users & cotrol them
   const handelPendingUsers = () => {
     // show users UI
-    setShowUI({...showUI,pendignUsers:!showUI.pendignUsers});
+    setShowUI({ ...showUI, pendignUsers: !showUI.pendignUsers });
   };
 
   // when user click on ✅
@@ -214,10 +217,10 @@ export default function Dashboard() {
 
       // update Pending users
       setPenidngUsers((prev) => prev.filter((u) => u.id !== user.id));
-      setShowUI({...showUI,toast:true});
+      setShowUI({ ...showUI, toast: true });
       setToastMsg("تم القبول بنجاح");
       setTimeout(() => {
-        setShowUI({...showUI,toast:false});
+        setShowUI({ ...showUI, toast: false });
         setToastMsg("");
       }, 1500);
     } catch (error) {
@@ -229,10 +232,10 @@ export default function Dashboard() {
     try {
       await deleteDoc(doc(db, "pending-users", id));
 
-      setShowUI({...showUI,toast:true});
+      setShowUI({ ...showUI, toast: true });
       setToastMsg("تم الرفض بنجاح");
       setTimeout(() => {
-        setShowUI({...showUI,toast:false});
+        setShowUI({ ...showUI, toast: false });
         setToastMsg("");
       }, 1500);
       setPenidngUsers((prev) => prev.filter((u) => u.id !== id));
@@ -242,7 +245,7 @@ export default function Dashboard() {
   }, []);
 
   const handleCloseConfirmPopup = () => {
-    setShowUI({...showUI,ConfirmPopup:false});
+    setShowUI({ ...showUI, ConfirmPopup: false });
   };
 
   return (
@@ -284,10 +287,16 @@ export default function Dashboard() {
         {/* Number of Students */}
         <div className="flex flex-col items-center rounded">
           {/* imgs */}
-        <div className=" overflow-hidden w-fit flex flex-col items-center">
-          <img src="std.webp" alt="" className="size-20 bg-white rounded-full" />
-          <p className="text-black bg-white font-extrabold my-2 rounded w-fit ">{students.length}</p>
-        </div>
+          <div className=" overflow-hidden w-fit flex flex-col items-center">
+            <img
+              src="std.webp"
+              alt=""
+              className="size-20 bg-white rounded-full"
+            />
+            <p className="text-black bg-white font-extrabold my-2 rounded w-fit ">
+              {students.length}
+            </p>
+          </div>
         </div>
         {/* End Number of Students */}
 
@@ -352,7 +361,6 @@ export default function Dashboard() {
           </>
         )}
         {/* ============= End pending user UI ============== */}
-
       </main>
       {/* ===== End content  ===== */}
     </div>

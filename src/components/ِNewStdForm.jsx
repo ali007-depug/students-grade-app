@@ -1,8 +1,10 @@
 // hooks
 import { useReducer, useState } from "react";
 // components
-const Input = () => import("./Input");
-const Toast = ()=> import("./Toast")
+// const Input = () => import("./Input");
+// const Toast = ()=> import("./Toast")
+import Toast from "./Toast";
+import Input from "./Input";
 // react icons
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { BiEdit } from "react-icons/bi";
@@ -98,10 +100,10 @@ export default function NewStdFrom({
         setLoading(true);
         try {
           await updateDoc(doc(db, "grades", editedId), {
-            stdName: formData.stdName,
-            std_id: formData.std_id,
+            stdName: formData.stdName.trim(),
+            std_id: formData.std_id.trim(),
             // stdCourse: formData.stdCourse,
-            stdGrade: formData.stdGrade,
+            stdGrade: formData.stdGrade.trim(),
           });
         } catch (error) {
           console.log(error);
@@ -119,10 +121,10 @@ export default function NewStdFrom({
           setLoading(true);
           
           await addDoc(collection(db, "grades"), {
-            stdName: formData.stdName,
-            std_id: formData.std_id,
+            stdName: formData.stdName.tirm(),
+            std_id: formData.std_id.trim(),
             // stdCourse: formData.stdCourse,
-            stdGrade: formData.stdGrade,
+            stdGrade: formData.stdGrade.trim(),
           });
         } catch (error) {
           console.log(`the error is ${error}`);
