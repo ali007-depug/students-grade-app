@@ -1,8 +1,6 @@
 // hooks
-import { useCallback, useState, useTransition } from "react";
+import { useCallback, useState } from "react";
 // components
-// const SearchForm = ()=> import( "../components/SearchForm");
-// const ResultCard = ()=> import("../components/ResultCard")
 import SearchForm from "../components/SearchForm";
 import ResultCard from "../components/ResultCard";
 
@@ -51,7 +49,8 @@ export default function StudentsGrade() {
   }, []);
 
   return (
-    <div className="bg-bg2-color shadow-md shadow-white p-5 rounded w-[min(95%,550px)]">
+    
+    <div className=" bg-bg2-color shadow-md shadow-white p-5 rounded w-[min(95%,550px)]">
       {/* title */}
       <h1 className="text-center font-extrabold text-3xl mt-3 mb-10 text-title-color">
         نتائج الطلاب

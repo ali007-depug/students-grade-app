@@ -2,17 +2,11 @@
 import { useEffect, useState } from "react";
 // components
 import SidePanel from "../components/SidePanel";
-// const SidePanel = () => import("../components/SidePanel");
-// const DashboardData = () => import("../components/DashboardData");
 import DashboardData from "../components/DashboardData";
 import NewStdFrom from "../components/ِNewStdForm";
-// const NewStdFrom = () => import("../components/ِNewStdForm");
 import ConfirmPopup from "../components/ConfirmPopup";
-// const ConfirmPopup = () => import("../components/ConfirmPopup");
 import PendingUsers from "../components/PendingUsers";
-// const PendingUsers = () => import("../components/PendingUsers");
 import Toast from "../components/Toast";
-// const Toast = () => import("../components/Toast");
 // react icons
 import { RxAvatar } from "react-icons/rx";
 import { PiStudent } from "react-icons/pi";
@@ -281,9 +275,12 @@ export default function Dashboard() {
       {/* ===== End header ===== */}
       {/* Content */}
       <main className="px-dyp py-10" role="main">
+        {/* main text */}
         <p className="flex gap-3 items-center text-xl md:text-2xl lg:text-4xl mb-5 font-extrabold justify-center px-3 py-2 text-white">
           <PiStudent size={60} color="white"></PiStudent> بيانات الطلاب
         </p>
+
+        {/* */}
         {/* Number of Students */}
         <div className="flex flex-col items-center rounded">
           {/* imgs */}

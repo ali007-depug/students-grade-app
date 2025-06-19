@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // componetns
-// const Input = () => import("../components/Input");
 import PopupError from "../components/PoupError";
 import Input from "../components/Input";
-// const PopupError = () => import("../components/PoupError");
 // react icons
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 

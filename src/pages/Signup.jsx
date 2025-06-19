@@ -1,8 +1,6 @@
 // hooks
 import { useState } from "react";
 // components
-// const Input = () => import("../components/Input");
-// const PopupError = () => import("../components/PoupError");
 import Input from "../components/Input";
 import PopupError from "../components/PoupError";
 // react router

@@ -1,28 +1,43 @@
 import { MdAccountBox } from "react-icons/md";
 import { PiPlus } from "react-icons/pi";
+import { PiStudentThin } from "react-icons/pi";
+// react router
+import {useNavigate } from "react-router-dom";
 
 export default function SidePanel({
   handleSidePanelArrow,
   showSidePanel,
   addNewStudent,
   showPendingUsers
-}) {
+}){
+
+  const navigate = useNavigate()
+
+  // open student UI
+  const openStudentUI = ()=>{
+    navigate("/")
+  }
+
   return (
     <>
       {/* fixed side panel */}
       <div
-        className={` [direction:rtl] flex flex-col items-center fixed lg:right-0 top-30 rounded px-10 py-5 bg-n2-color sm:w-[40%] md:w-[32%] lg:w-[25%] transition-all duration-500 ease-in-out ${
+        className={` [direction:rtl] flex flex-col items-center fixed lg:right-0 top-30 rounded px-10 py-5 bg-n-color sm:w-[40%] md:w-[32%] lg:w-[25%] transition-all duration-500 ease-in-out ${
           showSidePanel ? "right-0 sm:right-0" : "right-[-238px]"
         }`}
       >
-        <div className="flex flex-col gap-3 text-title-color font-bold">
+        <div className="flex flex-col gap-3 text-white font-bold">
+          {/* student UI  */}
+          <button className="flex gap-3 cursor-pointer px-3 py-2 bg-bg-color hover:text-bg-color hover:bg-white rounded transition-all duration-300 ease-out" onClick={openStudentUI}>
+            <PiStudentThin size={20} color="black" style={{"background":"white" , "borderRadius":"100%"}} ></PiStudentThin>نافذة النتيجة
+          </button>
           {/* add new student  */}
-          <button className="flex gap-3 cursor-pointer px-3 py-2 bg-bg2-color rounded" onClick={addNewStudent}>
-            <PiPlus size={20} color="green"></PiPlus>إضافة طالب جديد
+          <button className="flex gap-3 cursor-pointer px-3 py-2 bg-bg-color hover:text-bg-color hover:bg-white rounded transition-all duration-300 ease-out" onClick={addNewStudent}>
+            <PiPlus size={20} color="black" style={{"background":"white" , "borderRadius":"100%"}}></PiPlus>إضافة طالب جديد
           </button>
           {/* show pending users */}
-          <button className="flex gap-3 cursor-pointer px-3 py-2 bg-bg2-color rounded" onClick={showPendingUsers}>
-            <MdAccountBox size={20} color="blue"></MdAccountBox>عرض الحسابات
+          <button className="flex gap-3 cursor-pointer px-3 py-2 bg-bg-color hover:text-bg-color hover:bg-white rounded transition-all duration-300 ease-out" onClick={showPendingUsers}>
+            <MdAccountBox size={20} color="black" style={{"background":"white" , "borderRadius":"100%"}}></MdAccountBox>عرض الحسابات
           </button>
         </div>
         {/*===== arrow wapper ==== */}

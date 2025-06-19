@@ -1,8 +1,6 @@
 // hooks
 import { useReducer, useState } from "react";
 // components
-// const Input = () => import("./Input");
-// const Toast = ()=> import("./Toast")
 import Toast from "./Toast";
 import Input from "./Input";
 // react icons
@@ -148,7 +146,7 @@ export default function NewStdFrom({
     // form
     <form
       onSubmit={handelAddNewStd}
-      className="fixed w-[min(80%,550px)] [direction:rtl] flex flex-col gap-3 px-5 py-15 bg-n2-color border-2 border-white rounded top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+      className="fixed w-[min(80%,550px)] [direction:rtl] flex flex-col gap-3 px-5 py-15 bg-s-color border-2 border-white rounded top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
     >
       {/* close icon */}
       <IoCloseCircleSharp
@@ -198,7 +196,7 @@ export default function NewStdFrom({
       <button
         type="submit"
         disabled={loading}
-        className={`flex justify-center items-center font-bold  px-3 py-2 w-full rounded bg-green-400  cursor-pointer hover:bg-green-600 hover:text-white transition duration-300 ease-in-out ${
+        className={`flex justify-center items-center font-bold  px-3 py-2 w-full rounded cursor-pointer bg-teal-400 hover:bg-teal-600 text-title-color hover:text-white transition duration-300 ease-in-out ${
           loading && "opacity-50"
         }`}
       >
