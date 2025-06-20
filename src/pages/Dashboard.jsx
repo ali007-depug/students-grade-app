@@ -312,6 +312,8 @@ export default function Dashboard() {
             closeNewStdForm={closeNewStdForm}
             editedId={editedSelectedId}
             fetchStudents={fetchStudents}
+            setShowUI = {setShowUI}
+            showUI = {showUI}
           />
         )}
         {/* ========= End Form to add or edit student ===========*/}

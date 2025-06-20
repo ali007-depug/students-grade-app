@@ -37,6 +37,8 @@ export default function NewStdFrom({
   fetchStudents,
   oldStudent,
   editedId,
+  setShowUI,
+  showUI
 }) {
   // init student [the old student use to pre fill the form fields in Editing mode]
   const student = oldStudent || {
@@ -110,6 +112,7 @@ export default function NewStdFrom({
           setShowToast(true);
           setTimeout(() => {
             setShowToast(false);
+            setShowUI({...showUI,NewStdFrom:false})
           }, 1000);
         }
       }
