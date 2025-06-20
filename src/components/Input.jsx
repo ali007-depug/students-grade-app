@@ -17,7 +17,7 @@ function handelLabelClick() {
             id={id}
             placeholder=" "
             required
-            className={`h-10 bg-white text-title-color font-bold w-full rounded px-2 peer placeholder-transparent  outline-gray-600 user-invalid:outline-red-600 user-valid:outline-green-400 focus:outline-3 focus:outline-bg-color text-center ${customStyle}`}
+            className={`h-10 bg-white text-title-color font-bold w-full rounded px-2 peer placeholder-transparent outline-2  outline-gray-600 user-invalid:outline-red-600 user-valid:outline-green-400 focus:outline-3 focus:outline-bg-color text-center ${customStyle}`}
           />
           <label
             htmlFor={id}
