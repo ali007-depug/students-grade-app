@@ -14,7 +14,7 @@ export default function ResultCard({ result, error, loading }) {
         <div className="std__info flex flex-col gap-4 mx-auto w-fit">
           {/* name */}
           <div className="std__name flex font-bold">
-            <p className="pl-1"> الاسم :</p>
+            {/* <p className="pl-1 text-"> الاسم :</p> */}
             <p>{result?.stdName}</p>
           </div>
           {/* his grade */}
