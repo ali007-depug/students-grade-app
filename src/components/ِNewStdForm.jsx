@@ -100,7 +100,7 @@ export default function NewStdFrom({
           await updateDoc(doc(db, "grades", editedId), {
             stdName: formData.stdName.trim(),
             std_id: formData.std_id.trim(),
-            // stdCourse: formData.stdCourse,
+            // stdCourse: formData.stdCourse,.trim
             stdGrade: formData.stdGrade.trim(),
           });
         } catch (error) {
@@ -119,7 +119,7 @@ export default function NewStdFrom({
           setLoading(true);
           
           await addDoc(collection(db, "grades"), {
-            stdName: formData.stdName.tirm(),
+            stdName: formData.stdName.trim(),
             std_id: formData.std_id.trim(),
             // stdCourse: formData.stdCourse,
             stdGrade: formData.stdGrade.trim(),
