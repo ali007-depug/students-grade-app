@@ -24,6 +24,7 @@ export default function ProtectedRoute({ children }) {
   }, []);
 
   if (checking) {
+    
     return (
         <div className="[direction:rtl] px-2 grid place-items-center h-[100dvh] bg-bg-color text-white font-extrabold">
         <div className="flex items-center gap-2">

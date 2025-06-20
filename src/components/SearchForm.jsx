@@ -2,11 +2,7 @@
 import { useState } from "react";
 export default function SearchForm({ onSearch }) {
   const [stdIdVal, setStdIdVal] = useState(""); // store Students input
-  const [validateInput,setValidateInput] = useState(null)
   
-
-
-
   // func for handel input
   const handelStdInputVal = (inputVal) => {
     setStdIdVal(inputVal);
@@ -15,10 +11,6 @@ export default function SearchForm({ onSearch }) {
   //  form submission function
   const handelFromSubmission = (e) => {
     e.preventDefault();
-    // check the input if it's valid or not
-    // const isInputValid = /^\d+$/.test(stdIdVal);
-    // setValidateInput(isInputValid);
-    setValidateInput(true);
       // this comes from it's parent 
       onSearch(stdIdVal.trim());
   };

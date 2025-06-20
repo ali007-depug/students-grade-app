@@ -98,7 +98,6 @@ export default function Signup() {
           }); 
           // //  Redirect to dashboard
           await auth.signOut();
-          console.log("why the popup not working")
           setShowPopupError(true);
           setErrorMsg("تم استلام البيانات، سيتم تنشيط الحساب لاحقاً");
 
