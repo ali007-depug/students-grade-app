@@ -1,5 +1,5 @@
 /**
- * This componetn is used to when user refresh the dashboard to stop take him to the login page
+ * This component is used to when user refresh the dashboard to stop take him to the login page
  */
 // hooks
 import { useEffect, useState } from "react";

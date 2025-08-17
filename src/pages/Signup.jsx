@@ -129,7 +129,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className="signup px-5 pt-10 pb-5 rounded flex flex-col gap-5 items-center bg-bg2-color w-[min(98%,550px)]">
+    <div className="signup px-5 pt-10 pb-5 rounded flex flex-col gap-5 items-center bg-gray-200 w-[min(98%,550px)]">
       <h1 className="text-center font-extrabold text-3xl mb-5 text-title-color">
          أدمن جديد
       </h1>

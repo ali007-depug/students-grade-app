@@ -70,12 +70,6 @@ export default function NewStdFrom({
   const handelStdGrade = (newValue) => {
     dispatch({ type: "stdGrade", newValue: newValue });
   };
-  /* ======================== student course Input Function ======================= */
-
-  // const handelStdCourse = (newValue) => {
-  //   dispatch({ type: "stdCourse", newValue: newValue });
-  // };
-  /* ======================== student course Input Function ======================= */
 
   //   add new std to firesotre
   const handelAddNewStd = async (e) => {
