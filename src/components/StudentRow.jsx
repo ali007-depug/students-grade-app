@@ -14,7 +14,7 @@ export default function StudentRow({
   const [editedData, setEditedData] = useState({});
   const [saving, setSaving] = useState(false);
 
-  const fields = ["sectionA", "sectionB", "spotter", "oral", "contAsset"];
+  const fields = ["sectionA", "sectionB","sectionC", "spotter", "oral", "contAsset"];
 
   const mergedFields = {
     ...student.fields,
